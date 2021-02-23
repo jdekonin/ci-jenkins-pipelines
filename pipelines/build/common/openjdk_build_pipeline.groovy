@@ -923,6 +923,7 @@ class Build {
                             // Note: Underlying org.apache DirectoryScanner used by cleanWs has a bug scanning where it misses files containing ".." so use rm -rf instead
                             // Issue: https://issues.jenkins.io/browse/JENKINS-64779
                             if (context.WORKSPACE != null && !context.WORKSPACE.isEmpty()) {
+                                context.println "here 8"
                                 context.println "Cleaning workspace non-hidden files: " + context.WORKSPACE + "/*"
                                 context.sh(script: "rm -rf " + context.WORKSPACE + "/*")
                             } else {
@@ -949,15 +950,15 @@ class Build {
             try {
                 context.timeout(time: buildTimeouts.NODE_CHECKOUT_TIMEOUT, unit: "HOURS") {
                     if (useAdoptShellScripts) {
-                        println "Here 3"
+                        context.println "Here 3"
                         repoHandler.checkoutAdoptPipelines()
                     } else {
-                        println "Here 4"
+                        context.println "Here 4"
                         repoHandler.checkoutUserPipelines()
                     }
                     // Perform a git clean outside of checkout to avoid the Jenkins enforced 10 minute timeout
                     // https://github.com/AdoptOpenJDK/openjdk-infrastructure/issues/1553
-                    println "here 5"
+                    context.println "here 5"
                     context.sh(script: "git clean -fdx")
                 }
             } catch (FlowInterruptedException e) {
@@ -1229,7 +1230,7 @@ class Build {
 
                                         // Perform a git clean outside of checkout to avoid the Jenkins enforced 10 minute timeout
                                         // https://github.com/AdoptOpenJDK/openjdk-infrastructure/issues/1553
-                                        println "here 6"
+                                        context.println "here 6"
                                         context.sh(script: "git clean -fdx")
                                     }
                                 } catch (FlowInterruptedException e) {
