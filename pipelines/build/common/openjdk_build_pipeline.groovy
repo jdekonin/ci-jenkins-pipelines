@@ -920,7 +920,7 @@ class Build {
             // Create the repo handler with the user's defaults to ensure a openjdk-build checkout is not null
 >>>>>>> 1ee8ec3 (Set User Defaults in RepoHandler)
             def repoHandler = new RepoHandler(context, USER_REMOTE_CONFIGS)
-            repoHandler.setUserDefaultsJson(DEFAULTS_JSON['defaultsUrl'])
+            repoHandler.setUserDefaultsJson(context, DEFAULTS_JSON['defaultsUrl'])
             if (cleanWorkspace) {
                 try {
 
