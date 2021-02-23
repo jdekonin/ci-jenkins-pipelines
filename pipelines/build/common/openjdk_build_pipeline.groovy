@@ -912,7 +912,9 @@ class Build {
         filename,
         useAdoptShellScripts
     ) {
+        context.println "here 16"
         return context.stage("build") {
+            context.println "here 17"
             def repoHandler = new RepoHandler(context, USER_REMOTE_CONFIGS)
             if (cleanWorkspace) {
                 try {
@@ -1303,6 +1305,7 @@ class Build {
                                     )
                                 }
                             } else {
+                                context.println "here 15"
                                 buildScripts(
                                     cleanWorkspace,
                                     cleanWorkspaceAfter,
